@@ -2,11 +2,12 @@ export interface BaseUserDTO{
 firsName: string,
 lastName: string,
 email:    string,
-level:   string
+level?:   string
 }
 
 export interface UserDTO extends BaseUserDTO{
-    id: number
+    id: number,
+    
    
 }
 

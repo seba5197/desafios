@@ -37,6 +37,73 @@ try {
     return error
     
 }
+    }
+
+public readonly FindAllDone = async (op:number): Promise<taskDTO[]> => {
+   
+   console.log(op+" XXXXXXXXXXX")
+    
+    
+    try {
+        if (this.level == "user"  && op == 1){
+            let  task = await prisma.taskx.findMany({
+                
+                where: {
+                    done:true,
+                    userID:this.userId
+                }
+                
+            })
+            return task
+        }
+        if (this.level == "user" && op == 0){
+            let  task = await prisma.taskx.findMany({
+                
+                where: {
+                    done:false,
+                    userID:this.userId
+                }
+                
+            })
+            return task
+        }
+        if (this.level == "admin" && op == 1){
+            let  task = await prisma.taskx.findMany({
+                
+                where: {
+                    done:true
+                    
+                }
+                
+            })
+            return task
+        }
+        if (this.level == "admin" && op == 0){
+            let  task = await prisma.taskx.findMany({
+                
+                where: {
+                    done:false
+                    
+                }
+                
+            })
+            return task
+        }
+    
+        let task = await prisma.taskx.findMany({
+                
+            where: {
+                userID:this.userId
+            }
+            
+        })
+        return task
+        
+    } catch (error) {
+    
+        return error
+        
+    }
     
 
     

@@ -44,6 +44,17 @@ export default class taskcontroller {
     res.json({message:"Esta tarea no se encontro o no corresponde a este usuario"})
   }
 
+  public readonly statusall = async  (req: Request, res: Response)  => {
+    
+    
+    const iduser= req.user as UserTokenPayload
+    const { id }= req.params 
+    const repositorie = new taskrepositorie(iduser.sub, iduser.level)
+    const task = await repositorie.FindAllDone(parseInt(id))
+    console.log("buscando tarea")
+    res.status(200).json({task})
+  }
+
   public readonly Create = async  (req: Request, res: Response)  => {
     const iduser= req.user as UserTokenPayload
     const repositorie = new taskrepositorie(iduser.sub, iduser.level)

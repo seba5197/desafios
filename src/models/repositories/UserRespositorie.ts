@@ -54,7 +54,7 @@ export default class userRepositorie{
     public readonly Update = async (id:number, user:UpdateUserDTO) => {
         await prisma.userx.update({
             where: {
-               
+
                 id
             },
             data: user
